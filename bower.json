@@ -1,0 +1,17 @@
+{
+  "name": "decisive-app",
+  "description": "Angular-Yelp integration",
+  "main": "",
+  "authors": [
+    "Katie Reed <katharynreedpierce@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
