@@ -1,0 +1,12 @@
+{
+  "/": {
+     "target":  {
+       "host": "localhost",
+       "protocol": "https:",
+       "port": 3000
+     },
+     "secure": false,
+     "changeOrigin": true,
+     "logLevel": "info"
+   }
+ }
