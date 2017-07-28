@@ -15,10 +15,29 @@ export class AppComponent implements OnInit {
 
 constructor(private RestaurantService: RestaurantService ){ }
 
-ngOnInit() {
-  this.RestaurantService.authenticateRequest();
-}
+restaurant;
+restaurantWebsite;
+restaurantRating;
+restaurantCategory;
+restaurantPrice;
+clicked = false;
+unclicked = true;
 
+  ngOnInit() {
+    this.RestaurantService.authenticateRequest();
+  }
 
-
+  findARestaurant() {
+    this.clicked = true;
+    this.unclicked = false;
+    this.RestaurantService.getRestaurants();
+    this.restaurant = this.RestaurantService.restaurant;
+    this.restaurantWebsite = this.RestaurantService.restaurantWebsite;
+    this.restaurantPrice = this.RestaurantService.restaurantPrice;
+    this.restaurantRating = this.RestaurantService.restaurantRating;
+    this.restaurantCategory = this.RestaurantService.restaurantCategory;
+    console.log(this.restaurantCategory);
+    console.log(this.restaurant);
+    return this.restaurant;
+  }
 }

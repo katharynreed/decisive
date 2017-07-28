@@ -1,3 +1,16 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="col-6">
+        Lets eat in Portland.
+        <button class="btn" (click)="findARestaurant()">Pick for Me</button>
+      </div>
+      <div class="col-6">
+        <a href={{restaurantWebsite}}>{{restaurant}}</a>
+        <p>price: {{restaurantPrice}}</p>
+        <p>rating: {{restaurantRating}}</p>
+        <p>{{restaurantCategory}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,8 +9,13 @@ import 'rxjs/add/operator/toPromise';
 export class RestaurantService {
 
   authToken = "";
-  restaurant = "";
+  restaurant;
+  restaurantWebsite;
+  restaurantPrice;
+  restaurantRating;
+  restaurantCategory;
   searchIndex;
+  data;
 
   constructor(private http: Http) { }
 
@@ -31,7 +36,7 @@ export class RestaurantService {
       .subscribe(
         data => this.saveJwt(data.access_token),
         err => this.logError(err),
-        () => this.getRestaurants()
+        // () => this.getRestaurants()
       );
     }
 
@@ -48,20 +53,45 @@ export class RestaurantService {
       )
       .map(res => res.json())
       .subscribe(
-        data => this.returnRestaurant(data["businesses"][this.randomizeSearchIndex()]["name"]),
-        // data => console.log(data),
+        data => this.data = data,
+        // data => this.returnRestaurant(data["businesses"][this.randomizeSearchIndex()]),
         err => this.logError(err),
-        () => console.log("it worked again!")
+        () => console.log(this.data)
       );
+
+      this.returnRestaurant(this.data);
+
+      return this.restaurant;
     }
 
     returnRestaurant(res) {
-      console.log(res);
+      let searchInt = this.randomizeSearchIndex();
+      this.restaurant = res['businesses'][searchInt]['name'];
+      this.returnRestaurantWebsite(res, searchInt);
+      this.returnRestaurantRating(res, searchInt);
+      this.returnRestaurantPrice(res, searchInt);
+      this.returnRestaurantCategory(res, searchInt);
+      console.log(this.restaurant);
+    }
+
+    returnRestaurantRating(res, int) {
+      this.restaurantRating = res['businesses'][int]['rating'];
+    }
+
+    returnRestaurantPrice(res, int) {
+      this.restaurantPrice = res['businesses'][int]['price'];
+    }
+
+    returnRestaurantCategory(res, int) {
+      this.restaurantCategory = res['businesses'][int]['categories'][0]['title'];
+    }
+
+    returnRestaurantWebsite(res, int) {
+      this.restaurantWebsite = res['businesses'][int]['url'];
     }
 
     randomizeSearchIndex() {
       this.searchIndex = Math.floor(Math.random() * (20 - 0)) + 0;
-      console.log(this.searchIndex);
       return this.searchIndex;
     }
 

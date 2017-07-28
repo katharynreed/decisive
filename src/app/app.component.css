@@ -1,0 +1,21 @@
+.container {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.content {
+  padding-top: 20px;
+  font-size: 10em;
+  text-transform: uppercase;
+}
+
+.btn {
+  background: none;
+  border-radius: 0;
+  border: 2px solid pink;
+  font-size: .75em;
+  text-transform: uppercase;
+}
+
+.btn:focus {
+  outline-color: pink;
+}
