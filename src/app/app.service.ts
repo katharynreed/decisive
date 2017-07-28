@@ -40,11 +40,11 @@ export class RestaurantService {
       );
     }
 
-    getRestaurants() {
+    getRestaurants(location) {
       let headers = new Headers();
       headers.append('Authorization', 'Bearer ' + this.authToken);
 
-      let creds = 'target=https://api.yelp.com/v3/businesses/search\?&location=portland&term=restaurant'
+      let creds = 'target=https://api.yelp.com/v3/businesses/search\?&location=' + location + '&term=restaurant';
 
       this.randomizeSearchIndex();
       this.http.get(

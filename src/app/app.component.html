@@ -1,15 +1,26 @@
 <div class="container">
   <div class="content">
-    <div class="row">
-      <div class="col-6">
-        Lets eat in Portland.
-        <button class="btn" (click)="findARestaurant()">Pick for Me</button>
+    <div *ngIf='unclicked'>
+      <div class="row">
+        <div class="col-6">
+          <div class="lets-eat">Let's eat in
+          </div>
+          <input class="form-control" #location placeholder="your city">
+          <button class="btn" (click)="findARestaurant(location.value)">Pick for Me</button>
+        </div>
       </div>
-      <div class="col-6">
-        <a href={{restaurantWebsite}}>{{restaurant}}</a>
-        <p>price: {{restaurantPrice}}</p>
-        <p>rating: {{restaurantRating}}</p>
-        <p>{{restaurantCategory}}</p>
+    </div>
+    <div *ngIf='clicked'>
+      <div class="clicked-content">
+        <div class="col-6">
+          <a href={{restaurantWebsite}} class="restaurant-name">{{restaurant}}</a>
+          <div class="restaraunt-info">
+            <p><span class="price">price:</span> {{restaurantPrice}}</p>
+            <p><span class="rating">rating:</span> {{restaurantRating}}</p>
+            <p><span class="category">{{restaurantCategory}}</span></p>
+          </div>
+          <button class="btn" (click)="findNewRestaurant()">Pick Again</button>
+        </div>
       </div>
     </div>
   </div>

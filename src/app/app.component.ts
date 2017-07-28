@@ -22,15 +22,17 @@ restaurantCategory;
 restaurantPrice;
 clicked = false;
 unclicked = true;
+location;
 
   ngOnInit() {
     this.RestaurantService.authenticateRequest();
   }
 
-  findARestaurant() {
+  findARestaurant(location) {
+    this.location = location;
     this.clicked = true;
     this.unclicked = false;
-    this.RestaurantService.getRestaurants();
+    this.RestaurantService.getRestaurants(location);
     this.restaurant = this.RestaurantService.restaurant;
     this.restaurantWebsite = this.RestaurantService.restaurantWebsite;
     this.restaurantPrice = this.RestaurantService.restaurantPrice;
@@ -39,5 +41,14 @@ unclicked = true;
     console.log(this.restaurantCategory);
     console.log(this.restaurant);
     return this.restaurant;
+  }
+
+  findNewRestaurant() {
+    this.RestaurantService.getRestaurants(this.location);
+    this.restaurant = this.RestaurantService.restaurant;
+    this.restaurantWebsite = this.RestaurantService.restaurantWebsite;
+    this.restaurantPrice = this.RestaurantService.restaurantPrice;
+    this.restaurantRating = this.RestaurantService.restaurantRating;
+    this.restaurantCategory = this.RestaurantService.restaurantCategory;
   }
 }

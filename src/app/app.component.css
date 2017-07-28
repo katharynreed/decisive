@@ -1,9 +1,26 @@
+a {
+  color: #000;
+  max-width: 500px;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+}
+
+a:hover {
+  font-style: italic;
+}
+
+
+.clicked-content {
+  font-size: .5em;
+  padding-top: -5%;
+}
+
 .container {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .content {
-  padding-top: 20px;
+  padding-top: 10%;
   font-size: 10em;
   text-transform: uppercase;
 }
@@ -11,11 +28,39 @@
 .btn {
   background: none;
   border-radius: 0;
-  border: 2px solid pink;
+  color: #FD151B;
   font-size: .75em;
   text-transform: uppercase;
 }
 
+.btn:hover {
+  font-style: italic;
+  margin-bottom: 0;
+  border-bottom: 10px solid #FD151B;
+}
+
 .btn:focus {
-  outline-color: pink;
+  outline-color: none;
+}
+
+.form-control {
+  border-radius: 0;
+  border: 0;
+  height: 150px;
+  /*color: #D7CDCC;*/
+  font-family: 'Libre Baskerville', serif;
+  width: 60%;
+  font-size: .75em;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.lets-eat {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  color: #000;
+}
+
+.restaurant-info {
+  font-weight: 300;
 }
