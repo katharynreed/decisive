@@ -16,6 +16,8 @@ export class RestaurantService {
   restaurantCategory;
   searchIndex;
   data;
+  restaurantsPromise;
+  randomIndices = [];
 
   constructor(private http: Http) { }
 
@@ -46,32 +48,24 @@ export class RestaurantService {
 
       let creds = 'target=https://api.yelp.com/v3/businesses/search\?&location=' + location + '&term=restaurant';
 
-      this.randomizeSearchIndex();
-      this.http.get(
+      return this.http.get(
         'http://localhost:8888/api.php?' + creds,
         {headers: headers}
       )
-      .map(res => res.json())
-      .subscribe(
-        data => this.data = data,
-        // data => this.returnRestaurant(data["businesses"][this.randomizeSearchIndex()]),
-        err => this.logError(err),
-        () => console.log(this.data)
-      );
-
-      this.returnRestaurant(this.data);
-
-      return this.restaurant;
+      .toPromise()
+      .then(this.returnRestaurant.bind(this));
     }
 
     returnRestaurant(res) {
+      res = res.json();
+      this.data = res;
       let searchInt = this.randomizeSearchIndex();
       this.restaurant = res['businesses'][searchInt]['name'];
       this.returnRestaurantWebsite(res, searchInt);
       this.returnRestaurantRating(res, searchInt);
       this.returnRestaurantPrice(res, searchInt);
       this.returnRestaurantCategory(res, searchInt);
-      console.log(this.restaurant);
+      return res;
     }
 
     returnRestaurantRating(res, int) {
@@ -91,7 +85,20 @@ export class RestaurantService {
     }
 
     randomizeSearchIndex() {
-      this.searchIndex = Math.floor(Math.random() * (20 - 0)) + 0;
+      const randCeiling = 20;
+      if (this.randomIndices.length == randCeiling) {
+        this.randomIndices = [];
+      }
+
+      this.searchIndex = Math.floor(Math.random() * (randCeiling - 0)) + 0;
+
+      while (this.randomIndices.includes(this.searchIndex)) {
+        this.searchIndex = Math.floor(Math.random() * (randCeiling - 0)) + 0;
+      }
+      if (!this.randomIndices.includes(this.searchIndex)) {
+        this.randomIndices.push(this.searchIndex);
+      }
+
       return this.searchIndex;
     }
 

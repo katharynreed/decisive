@@ -30,25 +30,26 @@ location;
 
   findARestaurant(location) {
     this.location = location;
-    this.clicked = true;
-    this.unclicked = false;
-    this.RestaurantService.getRestaurants(location);
-    this.restaurant = this.RestaurantService.restaurant;
-    this.restaurantWebsite = this.RestaurantService.restaurantWebsite;
-    this.restaurantPrice = this.RestaurantService.restaurantPrice;
-    this.restaurantRating = this.RestaurantService.restaurantRating;
-    this.restaurantCategory = this.RestaurantService.restaurantCategory;
-    console.log(this.restaurantCategory);
-    console.log(this.restaurant);
-    return this.restaurant;
+    var restaurantPromise = this.RestaurantService.getRestaurants(location);
+    restaurantPromise.then(function(result) {
+      this.restaurant = this.RestaurantService.restaurant;
+      this.restaurantWebsite = this.RestaurantService.restaurantWebsite;
+      this.restaurantPrice = this.RestaurantService.restaurantPrice;
+      this.restaurantRating = this.RestaurantService.restaurantRating;
+      this.restaurantCategory = this.RestaurantService.restaurantCategory;
+      this.clicked = true;
+      this.unclicked = false;
+    }.bind(this));
   }
 
   findNewRestaurant() {
-    this.RestaurantService.getRestaurants(this.location);
-    this.restaurant = this.RestaurantService.restaurant;
-    this.restaurantWebsite = this.RestaurantService.restaurantWebsite;
-    this.restaurantPrice = this.RestaurantService.restaurantPrice;
-    this.restaurantRating = this.RestaurantService.restaurantRating;
-    this.restaurantCategory = this.RestaurantService.restaurantCategory;
+    var restaurantPromise = this.RestaurantService.getRestaurants(this.location);
+    restaurantPromise.then(function(result) {
+      this.restaurant = this.RestaurantService.restaurant;
+      this.restaurantWebsite = this.RestaurantService.restaurantWebsite;
+      this.restaurantPrice = this.RestaurantService.restaurantPrice;
+      this.restaurantRating = this.RestaurantService.restaurantRating;
+      this.restaurantCategory = this.RestaurantService.restaurantCategory;
+    }.bind(this));
   }
 }

@@ -23,6 +23,7 @@ a:hover {
   padding-top: 10%;
   font-size: 10em;
   text-transform: uppercase;
+  /*text-align: center;*/
 }
 
 .btn {
@@ -40,25 +41,34 @@ a:hover {
 }
 
 .btn:focus {
-  outline-color: none;
+  outline: #fff;
+  border-right: 5px;
 }
 
 .form-control {
   border-radius: 0;
   border: 0;
   height: 150px;
+  text-align: center;
   /*color: #D7CDCC;*/
   font-family: 'Libre Baskerville', serif;
-  width: 60%;
-  font-size: .75em;
+  border-bottom: 10px solid #000;
+  width: 63%;
+  font-size: .76em;
   text-transform: uppercase;
   font-style: italic;
+}
+
+.form-control::selection, input:focus {
+  -webkit-box-shadow: none;
+  outline: -webkit-focus-ring-color auto 0px;
 }
 
 .lets-eat {
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
   color: #000;
+  font-size: .75em;
 }
 
 .restaurant-info {
